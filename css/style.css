@@ -71,6 +71,14 @@ h1 {
   border: 1px solid rgb(220, 220, 220);
   margin-left: 0.8rem;
 }
+.form__footer {
+  display: flex;
+  align-items: center;
+}
+p {
+  margin-right: 1rem;
+  color: gray;
+}
 .btn {
   display: flex;
   justify-content: center;

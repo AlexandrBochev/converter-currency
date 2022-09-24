@@ -1,28 +1,53 @@
+const select = document.querySelectorAll('select');
 const amount = document.querySelectorAll('input');
 const currency = document.querySelectorAll('option');
+const currencyValue = document.querySelectorAll('p')
 const url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
+const rates = {}
 
-amount[0].value =2
+getCurrency();
 
-
-async function fetchHandler() {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    currency[0].innerHTML = data[0].base_ccy;
-    currency[1].innerHTML = data[0].ccy;
-    currency[2].innerHTML = data[1].ccy;
-    currency[3].innerHTML = data[0].base_ccy;
-    currency[4].innerHTML = data[0].ccy;
-    currency[5].innerHTML = data[1].ccy;
+async function getCurrency() {
+  const response = await fetch(url);
+  const data = await response.json();
+  const result = await data;
     
+  rates.USD = Number(result[0].buy);
+  rates.EUR = Number(result[1].buy);
+  rates.USDEUR = Number((result[0].buy) / (result[1].buy));
+  rates.EURUSD = Number((result[1].buy) / (result[0].buy));
 
-    amount[1].value = amount[0].value * data[0].buy;
-    
+  currencyValue[0].innerHTML = `USD: ${rates.USD.toFixed(2)}`;
+  currencyValue[1].innerHTML = `EUR: ${rates.EUR.toFixed(2)}`;
+}
 
-  } catch (error) {
-    console.log(error)
+amount[0].oninput = function() {
+  if (select[0].value === 'UAH' && select[1].value === 'UAH') {
+    amount[1].value = amount[0].value;
+  }
+  if (select[0].value === 'UAH' && select[1].value === 'USD') {
+    amount[1].value = (amount[0].value / rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'UAH' && select[1].value === 'EUR') {
+    amount[1].value = (amount[0].value / rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'UAH') {
+    amount[1].value = (amount[0].value * rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'USD') {
+    amount[1].value = amount[0].value;
+  }
+  if (select[0].value === 'USD' && select[1].value === 'EUR') {
+    amount[1].value = (amount[0].value * rates.USDEUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'UAH') {
+    amount[1].value = (amount[0].value * rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'EUR') {
+    amount[1].value = amount[0].value;
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'USD') {
+    amount[1].value = (amount[0].value * rates.EURUSD).toFixed(2);
   }
 }
-fetchHandler()
+
