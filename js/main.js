@@ -51,3 +51,92 @@ amount[0].oninput = function() {
   }
 }
 
+select[0].oninput = function() {
+  if (select[0].value === 'UAH' && select[1].value === 'UAH') {
+    amount[1].value = amount[0].value;
+  }
+  if (select[0].value === 'UAH' && select[1].value === 'USD') {
+    amount[1].value = (amount[0].value / rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'UAH' && select[1].value === 'EUR') {
+    amount[1].value = (amount[0].value / rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'UAH') {
+    amount[1].value = (amount[0].value * rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'USD') {
+    amount[1].value = amount[0].value;
+  }
+  if (select[0].value === 'USD' && select[1].value === 'EUR') {
+    amount[1].value = (amount[0].value * rates.USDEUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'UAH') {
+    amount[1].value = (amount[0].value * rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'EUR') {
+    amount[1].value = amount[0].value;
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'USD') {
+    amount[1].value = (amount[0].value * rates.EURUSD).toFixed(2);
+  }
+}
+
+amount[1].oninput = function() {
+  if (select[0].value === 'UAH' && select[1].value === 'UAH') {
+    amount[0].value = amount[1].value;
+  }
+  if (select[0].value === 'UAH' && select[1].value === 'USD') {
+    amount[0].value = (amount[1].value * rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'UAH' && select[1].value === 'EUR') {
+    amount[0].value = (amount[1].value * rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'UAH') {
+    amount[0].value = (amount[1].value / rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'USD') {
+    amount[0].value = amount[1].value;
+  }
+  if (select[0].value === 'USD' && select[1].value === 'EUR') {
+    amount[0].value = (amount[1].value / rates.USDEUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'UAH') {
+    amount[0].value = (amount[1].value / rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'EUR') {
+    amount[0].value = amount[1].value;
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'USD') {
+    amount[0].value = (amount[1].value / rates.EURUSD).toFixed(2);
+  }
+}
+
+select[1].oninput = function() {
+  if (select[0].value === 'UAH' && select[1].value === 'UAH') {
+    amount[0].value = amount[1].value;
+  }
+  if (select[0].value === 'UAH' && select[1].value === 'USD') {
+    amount[0].value = (amount[1].value * rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'UAH' && select[1].value === 'EUR') {
+    amount[0].value = (amount[1].value * rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'UAH') {
+    amount[0].value = (amount[1].value / rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'USD') {
+    amount[0].value = amount[1].value;
+  }
+  if (select[0].value === 'USD' && select[1].value === 'EUR') {
+    amount[0].value = (amount[1].value / rates.USDEUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'UAH') {
+    amount[0].value = (amount[1].value / rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'EUR') {
+    amount[0].value = amount[1].value;
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'USD') {
+    amount[0].value = (amount[1].value / rates.EURUSD).toFixed(2);
+  }
+}
