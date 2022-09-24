@@ -1,9 +1,53 @@
+const order = document.querySelector('.order');
 const select = document.querySelectorAll('select');
 const amount = document.querySelectorAll('input');
 const currency = document.querySelectorAll('option');
 const currencyValue = document.querySelectorAll('p')
+const reset = document.querySelector('.btn');
+const revers = document.querySelector('.revers');
 const url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
+
 const rates = {}
+
+reset.addEventListener('click', () => {
+  amount[0].value = '';
+  amount[1].value = '';
+  select[0].value = 'UAH';
+  select[1].value = 'USD';
+});
+
+revers.addEventListener('click', () => {
+  if (select[0].value === 'UAH' && select[1].value === 'USD') {
+    select[0].value = 'USD';
+    select[1].value = 'UAH';
+    amount[1].value = (amount[0].value / rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'UAH' && select[1].value === 'EUR') {
+    select[0].value = 'EUR';
+    select[1].value = 'UAH';
+    amount[1].value = (amount[0].value / rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'UAH') {
+    select[0].value = 'UAH';
+    select[1].value = 'USD';
+    amount[1].value = (amount[0].value * rates.USD).toFixed(2);
+  }
+  if (select[0].value === 'USD' && select[1].value === 'EUR') {
+    select[0].value = 'EUR';
+    select[1].value = 'USD';
+    amount[1].value = (amount[0].value * rates.USDEUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'UAH') {
+    select[0].value = 'UAH';
+    select[1].value = 'EUR';
+    amount[1].value = (amount[0].value * rates.EUR).toFixed(2);
+  }
+  if (select[0].value === 'EUR' && select[1].value === 'USD') {
+    select[0].value = 'USD';
+    select[1].value = 'EUR';
+    amount[1].value = (amount[0].value * rates.EURUSD).toFixed(2);
+  }
+});
 
 getCurrency();
 
