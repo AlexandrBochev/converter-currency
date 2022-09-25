@@ -17,34 +17,35 @@ reset.addEventListener('click', () => {
 });
 
 revers.addEventListener('click', () => {
+  let tempCode = select[0].value;
+  select[0].value = select[1].value;
+  select[1].value = tempCode;
+
+  if (select[0].value === 'UAH' && select[1].value === 'UAH') {
+    amount[1].value = amount[0].value;
+  }
   if (select[0].value === 'UAH' && select[1].value === 'USD') {
-    select[0].value = 'USD';
-    select[1].value = 'UAH';
     amount[1].value = (amount[0].value / rates.USD).toFixed(2);
   }
   if (select[0].value === 'UAH' && select[1].value === 'EUR') {
-    select[0].value = 'EUR';
-    select[1].value = 'UAH';
     amount[1].value = (amount[0].value / rates.EUR).toFixed(2);
   }
   if (select[0].value === 'USD' && select[1].value === 'UAH') {
-    select[0].value = 'UAH';
-    select[1].value = 'USD';
     amount[1].value = (amount[0].value * rates.USD).toFixed(2);
   }
+  if (select[0].value === 'USD' && select[1].value === 'USD') {
+    amount[1].value = amount[0].value;
+  }
   if (select[0].value === 'USD' && select[1].value === 'EUR') {
-    select[0].value = 'EUR';
-    select[1].value = 'USD';
     amount[1].value = (amount[0].value * rates.USDEUR).toFixed(2);
   }
   if (select[0].value === 'EUR' && select[1].value === 'UAH') {
-    select[0].value = 'UAH';
-    select[1].value = 'EUR';
     amount[1].value = (amount[0].value * rates.EUR).toFixed(2);
   }
+  if (select[0].value === 'EUR' && select[1].value === 'EUR') {
+    amount[1].value = amount[0].value;
+  }
   if (select[0].value === 'EUR' && select[1].value === 'USD') {
-    select[0].value = 'USD';
-    select[1].value = 'EUR';
     amount[1].value = (amount[0].value * rates.EURUSD).toFixed(2);
   }
 });
