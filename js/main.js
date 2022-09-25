@@ -53,17 +53,21 @@ revers.addEventListener('click', () => {
 getCurrency();
 
 async function getCurrency() {
-  const response = await fetch(url);
-  const data = await response.json();
-  const result = await data;
-    
-  rates.USD = Number(result[0].buy);
-  rates.EUR = Number(result[1].buy);
-  rates.USDEUR = Number((result[0].buy) / (result[1].buy));
-  rates.EURUSD = Number((result[1].buy) / (result[0].buy));
-
-  currencyValue[0].innerHTML = `USD: ${rates.USD.toFixed(2)}`;
-  currencyValue[1].innerHTML = `EUR: ${rates.EUR.toFixed(2)}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const result = await data;
+      
+    rates.USD = Number(result[0].buy);
+    rates.EUR = Number(result[1].buy);
+    rates.USDEUR = Number((result[0].buy) / (result[1].buy));
+    rates.EURUSD = Number((result[1].buy) / (result[0].buy));
+  
+    currencyValue[0].innerHTML = `USD: ${rates.USD.toFixed(2)}`;
+    currencyValue[1].innerHTML = `EUR: ${rates.EUR.toFixed(2)}`;
+  } catch (error) {
+    alert( "Oops! Something went wrong!" );
+  }
 }
 
 amount[0].oninput = function() {
