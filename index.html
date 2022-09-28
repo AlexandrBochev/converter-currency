@@ -4,15 +4,44 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DL | Front-End test task</title>
+  <title>Converter Currency</title>
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  
-  <h1>Main Site Title</h1>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni officiis id iusto aliquid dolorem repudiandae inventore eos alias cumque nemo mollitia amet fugit nobis libero, velit, delectus consectetur. Ipsam, doloribus!</p>
-
+  <div class="wrapper">
+    <h1>Converter Currency</h1>
+    <form action="#" method="post" class="form">
+      <div class="blocks">
+        <div class="block">
+          <input placeholder="Amount" name="amount" type="number" class="input">
+          <input placeholder="Amount" name="amount" type="number" class="input">
+        </div>
+        <div class="block">
+          <select name="Currency" class="select order">
+            <option value="UAH" selected>UAH</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+          <select name="Currency" class="select">
+            <option value="UAH">UAH</option>
+            <option value="USD" selected>USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
+        <div class="block">
+          <div class="revers">
+            <img src="./img/revers-icon.svg" alt="Revers" class="revers__icon">
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <p></p>
+        <p></p>
+        <div class="btn">Reset</div>
+      </div>
+    </form>
+  </div>
   <script src="./js/main.js"></script>
 </body>
 </html>
